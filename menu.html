@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            margin-top: 50px;
+            list-style: none;
+            display: flex;
+
+        }
+        a {
+            padding: 16px;
+            
+            text-decoration: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Создать меню</h1>
+    <form name="formMenu">
+        <p>
+            <label>Пункты меню:
+                <input type="text" name="elemMenu"
+                value="Главная, О компании, Новости" size="50">
+            </label>
+        </p>
+        <p>
+            <label>Цвет текста:
+                <input type="color" name="fColor" 
+                value="#ffffff">
+            </label>
+        </p>
+        <p>
+            <label>Цвет фона:
+                <input type="color" name="bColor" 
+                value="#41aedc">
+            </label>
+        </p>
+            <p>
+            <label>Цвет hover:
+                <input type="color" name="hColor" 
+                value="#fd9c10">
+            </label>
+        </p>
+        <p><input type="button" value="Создать меню" onclick="menu()" name="but"></p>
+        
+    </form>
+    <style id="myStyle">
+
+    </style>
+    <div id="myMenu">
+
+    </div>
+    <div id="myPic">
+
+    </div>
+    <!-- <ul>
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Главная</a></li>
+    </ul> -->
+    <script>
+      
+        function menu() {
+            
+           let elemMenu = formMenu.elemMenu.value;
+           let arrMenu = elemMenu.split(", ");
+           let fColor = formMenu.fColor.value;
+           let bColor = formMenu.bColor.value;
+           let hColor = formMenu.hColor.value;
+
+            // console.log(arrMenu);
+            // console.log(fColor);
+            // console.log(bColor);
+            // console.log(hColor);
+
+            let s = "", s1 = "";       
+
+                for (i=0; i<arrMenu.length; i++) 
+                s += `<li onclick="pic(${i+1})"><a href="#">${arrMenu[i]}</a></li>`;   
+                //  console.log(s);       
+                s = `<ul>${s}</ul>`;      
+                //   console.log(s);   
+                // стиль меню
+                s1 = `
+                a {
+                    background: ${bColor};
+                    color: ${fColor};
+                }
+
+                a:hover {
+                    background: ${hColor};
+                }
+                `;
+                myStyle.innerHTML = s1;
+                myMenu.innerHTML = s;
+                formMenu.but.value = "Изменить меню";
+
+
+        }
+                function pic(p) {
+                    myPic.innerHTML = `<img src="images/${p}.jpg" 
+                    onclick="myPic.innerHTML = ''" style="cursor:pointer">`;
+                }
+
+
+
+    </script>
+</body>
+</html>
